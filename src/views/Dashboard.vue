@@ -1,18 +1,18 @@
 <template>
   <div>
     <Header />
-
     <ul class="navbar nav list-inline" style="float: right;">
       <li>
         <input
+          id="keywordInput"
           type="text"
           class="search"
           autocomplete="off"
           placeholder=" Search"
-          v-model="searchedMeal"
+          v-model="searchText"
         />
         &nbsp;
-        <button class="btn btn-primary btn-sm" @click="searchMeal()">
+        <button id="keywordSearch" class="btn btn-primary btn-sm" @click="searchMeal()">
           Go
         </button>
       </li>
@@ -22,7 +22,7 @@
       <div class="random-meal">
         <div class="row">
           <div class="col-sm-6">
-            <img :src="random.meals[0][`strMealThumb`]" width="95%" /><br />
+            <img :src="random.meals[0].strMealThumb" width="95%" /><br />
           </div>
           <div class="col-sm-6">
             <table class="table table-borderless">
@@ -30,7 +30,7 @@
                 <td colspan="3" style="text-align: left">
                   <h3>
                     <b
-                      ><u> {{ random.meals[0][`strMeal`] }}</u></b
+                      ><u> {{ random.meals[0].strMeal }}</u></b
                     >
                   </h3>
                 </td>
@@ -38,18 +38,18 @@
               <tr>
                 <td style="width: 0.5%;text-align: left">Category:</td>
                 <td colspan="2" style="text-align: left">
-                  {{ random.meals[0][`strCategory`] }}
+                  {{ random.meals[0].strCategory }}
                 </td>
               </tr>
               <tr>
                 <td style="width: 0.5%;text-align: left">Origin:</td>
                 <td colspan="2" style="text-align: justify">
-                  {{ random.meals[0][`strArea`] }}
+                  {{ random.meals[0].strArea }}
                 </td>
               </tr>
               <tr>
                 <td colspan="3" style="text-align: left">
-                  <a :href="random.meals[0][`strYoutube`]"
+                  <a :href="random.meals[0].strYoutube"
                     ><b>Check Video Tutorial Here</b></a
                   >
                 </td>
@@ -76,7 +76,8 @@ export default {
   },
   data() {
     return {
-      random: []
+      random: [],
+      searchText: this.$store.getters.getSearchedMeals
     };
   },
   created() {
@@ -86,7 +87,7 @@ export default {
     searchMeal() {
       this.$router.push({
         name: "SearchMeals",
-        params: { keyword: this.$store.getters.getSearchedMeals }
+        params: { keyword: this.searchText }
       });
     }
   }

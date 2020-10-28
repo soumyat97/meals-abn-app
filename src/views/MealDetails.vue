@@ -43,7 +43,7 @@
             </td>
           </tr>
           <tr>
-            <td style="width: 0.5%;text-align: left">Instructions:</td>
+            <td class="receipe" style="width: 0.5%;text-align: left">Instructions:</td>
             <td colspan="2" style="text-align: justify">
               {{ meal.meals[0][`strInstructions`] }}
             </td>

@@ -2,7 +2,7 @@
   <div id="root">
     <Header />
     <div>
-      <u><h2>Search Meals</h2></u>
+      <u><h2 id="searchHeading">Search Meals</h2></u>
       <br /><br />
       <ul>
         <li v-for="(meal, index) in meals.meals" :key="index">
